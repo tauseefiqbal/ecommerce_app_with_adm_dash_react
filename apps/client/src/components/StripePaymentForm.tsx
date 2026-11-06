@@ -23,6 +23,7 @@ const fetchClientSecret = async (
     `${process.env.NEXT_PUBLIC_API_URL}/sessions/create-checkout-session`,
     {
       method: "POST",
+      credentials: "include",
       body: JSON.stringify({
         cart,
         email,
@@ -69,7 +70,7 @@ const StripePaymentForm = ({
       }
 
       try {
-        const authToken = await getToken();
+        const authToken = await getToken({ skipCache: true });
         if (!authToken) {
           throw new Error("Unable to authenticate your checkout session.");
         }
