@@ -1,18 +1,19 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import SearchBar from "./SearchBar";
 import { Bell, Home, ShoppingCart } from "lucide-react";
 import ShoppingCartIcon from "./ShoppingCartIcon";
 import {
-  SignedIn,
-  SignedOut,
   SignInButton,
-  SignUpButton,
-  UserButton,
+  useUser,
 } from "@clerk/nextjs";
 import ProfileButton from "./ProfileButton";
 
 const Navbar = () => {
+  const { isLoaded, isSignedIn } = useUser();
+
   return (
     <nav className="w-full flex items-center justify-between border-b border-gray-200 pb-4">
       {/* LEFT */}
@@ -36,12 +37,15 @@ const Navbar = () => {
         </Link>
         <Bell className="w-4 h-4 text-gray-600" />
         <ShoppingCartIcon />
-        <SignedOut>
-          <SignInButton />
-        </SignedOut>
-        <SignedIn>
+        {!isLoaded ? (
+          <span className="h-8 w-16 animate-pulse rounded bg-gray-100" />
+        ) : isSignedIn ? (
           <ProfileButton />
-        </SignedIn>
+        ) : (
+          <SignInButton mode="redirect" forceRedirectUrl="/">
+            Sign in
+          </SignInButton>
+        )}
       </div>
     </nav>
   );
