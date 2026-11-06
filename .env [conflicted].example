@@ -1,0 +1,51 @@
+# ==============================================================================
+# MASTER ENVIRONMENT VARIABLE CONFIGURATION (.env.example)
+# E-Commerce Monolith & Admin Dashboard
+# ==============================================================================
+# Copy this file to .env at the root level. All services share this file.
+
+# ------------------------------------------------------------------------------
+# 1. DATABASE & STORAGE (Single PostgreSQL Database)
+# ------------------------------------------------------------------------------
+# Format: postgresql://USER:PASSWORD@HOST:PORT/DATABASE?sslmode=require
+DATABASE_URL="postgresql://postgres:postgres@localhost:5432/ecommerce_db?schema=public"
+
+# ------------------------------------------------------------------------------
+# 2. CLERK AUTHENTICATION (Shared across Frontend & Backend API)
+# ------------------------------------------------------------------------------
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY="pk_test_your_clerk_publishable_key_here"
+CLERK_PUBLISHABLE_KEY="pk_test_your_clerk_publishable_key_here"
+CLERK_SECRET_KEY="sk_test_your_clerk_secret_key_here"
+
+# ------------------------------------------------------------------------------
+# 3. STRIPE PAYMENTS
+# ------------------------------------------------------------------------------
+STRIPE_SECRET_KEY="sk_test_your_stripe_secret_key_here"
+STRIPE_WEBHOOK_SECRET="whsec_your_stripe_webhook_secret_here"
+NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY="pk_test_your_stripe_publishable_key_here"
+
+# ------------------------------------------------------------------------------
+# 4. CLOUDINARY (Admin product image upload)
+# ------------------------------------------------------------------------------
+NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME="your_cloudinary_cloud_name"
+
+# ------------------------------------------------------------------------------
+# 5. GOOGLE OAUTH2 / GMAIL (Direct Mailer)
+# ------------------------------------------------------------------------------
+GOOGLE_CLIENT_ID="your_google_oauth_client_id.apps.googleusercontent.com"
+GOOGLE_CLIENT_SECRET="your_google_oauth_client_secret"
+GOOGLE_REFRESH_TOKEN="your_google_oauth_refresh_token"
+EMAIL_USER="lamadevtest@gmail.com"
+
+# ------------------------------------------------------------------------------
+# 6. SINGLE APP API ENDPOINT (Port 8000)
+# ------------------------------------------------------------------------------
+PORT=8000
+NEXT_PUBLIC_API_URL="http://localhost:8000"
+
+# ------------------------------------------------------------------------------
+# 7. APP PORTS (Reference)
+# ------------------------------------------------------------------------------
+# API Server:      8000
+# Client Frontend: 3002
+# Admin Frontend:  3003
